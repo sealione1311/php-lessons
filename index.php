@@ -1,19 +1,6 @@
 <?php
 require_once 'settings.php';
-$connection = new mysqli($host, $user, $password, $data);
-
-if($connection->connect_error) die('error connection');
-
-$query_command = "SELECT * FROM `4`";
-$result = $connection->query($query_command);
-
-if(!$result) die('Error result');
-$rows = $result->num_rows;
-
-for ($i = 0; $i < $rows; ++$i) {
-  $result->data_seek($i);
-  echo 'Login: ' . $result->fetch_assoc()['login'];
-};
-$result->close();
-$connection->close();
+$connection = new PDO('mysql:host=localhost;dbname=lesson_site', $user, $password);
+$query_command = "INSERT INTO `4`(`id_user`, `login`, `password`, `email`) VALUES (2,'user','pass232','user@mail.ru')";
+$connection->exec($query_command);
 ?>
